@@ -3,95 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Registration Form</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Student CGPA Viewer</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="page">
-    <section class="form-wrapper">
-      <h1>Student Registration Form</h1>
-      <p class="subtitle">Please fill in your personal and academic details.</p>
+  <main class="app-shell">
+    <section class="hero-grid" aria-label="Dashboard header">
+      <aside class="institute-card" aria-label="Institute logo">
+        <img class="institute-logo" src="assets/corner-logo.png" alt="SKIT logo">
+      </aside>
 
-      <form id="registrationForm">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-          </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Class Dashboard</p>
+        <h1>Student CGPA Viewer</h1>
+        <p class="subtitle">Search students quickly and reveal CGPA only when needed.</p>
+      </div>
+    </section>
 
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-          </div>
+    <section class="toolbar" aria-label="Student search">
+      <label class="search-box" for="studentSearch">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="m21 21-4.35-4.35"></path>
+          <circle cx="11" cy="11" r="7"></circle>
+        </svg>
+        <input id="studentSearch" type="search" placeholder="Search student or branch">
+      </label>
+    </section>
 
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-          </div>
+    <section class="summary" aria-label="Class summary">
+      <div>
+        <span id="visibleCount">0</span>
+        <p>Students shown</p>
+      </div>
+      <div>
+        <span>30</span>
+        <p>Total records</p>
+      </div>
+    </section>
 
-          <div class="form-group">
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" required>
-          </div>
-
-          <div class="form-group">
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" required>
-              <option value="">Select gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="course">Course</label>
-            <select id="course" name="course" required>
-              <option value="">Select course</option>
-              <option value="bca">BCA</option>
-              <option value="bba">BBA</option>
-              <option value="btech">B.Tech</option>
-              <option value="bcom">B.Com</option>
-              <option value="ba">BA</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="tenthMarks">10th Marks (%)</label>
-            <input type="number" id="tenthMarks" name="tenthMarks" min="0" max="100" step="0.01" placeholder="Example: 85.50" required>
-          </div>
-
-          <div class="form-group">
-            <label for="twelfthMarks">12th Marks (%)</label>
-            <input type="number" id="twelfthMarks" name="twelfthMarks" min="0" max="100" step="0.01" placeholder="Example: 78.25" required>
-          </div>
-
-          <div class="form-group">
-            <label for="photo">Upload Photo</label>
-            <input type="file" id="photo" name="photo" accept="image/*" required>
-          </div>
-        </div>
-
-        <div class="form-group full-width">
-          <label for="address">Address</label>
-          <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
-        </div>
-
-        <button type="submit">Register</button>
-        <p id="successMessage" class="success-message" aria-live="polite"></p>
-      </form>
+    <section class="student-panel" aria-label="Student list">
+      <div class="table-head">
+        <span>Name</span>
+        <span>Branch</span>
+        <span>CGPA</span>
+        <span>Action</span>
+      </div>
+      <div id="studentList" class="student-list"></div>
+      <p id="emptyState" class="empty-state" hidden>No matching student found.</p>
     </section>
   </main>
 
-  <script>
-    const registrationForm = document.getElementById('registrationForm');
-    const successMessage = document.getElementById('successMessage');
-
-    registrationForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-      successMessage.textContent = 'Submitted successfully!';
-      registrationForm.reset();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
